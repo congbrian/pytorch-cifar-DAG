@@ -42,10 +42,8 @@ def init_params(net):
                 init.constant(m.bias, 0)
 
 
-try:
-    term_width = int(os.popen('stty size', 'r').read().split()[1])
-except Exception:
-    term_width = 80  # Fallback default width for Colab and non-TTY environments
+_, term_width = os.popen('stty size', 'r').read().split()
+term_width = int(term_width)
 
 TOTAL_BAR_LENGTH = 65.
 last_time = time.time()
